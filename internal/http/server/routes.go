@@ -43,7 +43,7 @@ func newRouter(store *storage.Storage, pool *worker.Pool) http.Handler {
 	}
 
 	// Make the public VAPID key accessible
-	appMux.Handle("/vapid", newVAPIDProbe(store))
+	appMux.Handle("GET /vapid", newVAPIDProbe(store))
 
 	// UI routing (catch-all).
 	appMux.Handle("/", ui.Serve(store, pool))
